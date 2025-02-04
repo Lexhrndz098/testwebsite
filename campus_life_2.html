@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
+    <title>Campus Life</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Graduate', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SSLG Section Order */
+        section:nth-child(3) {
+            order: -1;
+        }
+
+        .SSLG {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            font-size: 30px;
+            background-color: #a1dda1;
+            padding: 20px 60px;
+            color: #333;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .content-section {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .slider-section, .media-section {
+            flex: 1;
+            position: relative;
+        }
+
+        .slider {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 1px;
+            box-shadow: 10px 8px 10px 5px rgb(127, 127, 120);
+            max-height: 600px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: auto;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slider-buttons {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .slider-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .slider-button.active {
+            background-color: white;
+        }
+
+        .title {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 20px 30px;
+            text-decoration: underline;
+            font-size: 30px;
+        }
+
+        .tagline {
+            font-family: sans-serif;
+            font-size: 18px;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .message {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
+        .footer-tagline {
+            font-family: sans-serif;
+            font-style: italic;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .logo-container {
+            width: 100%;
+            size: 50%;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .logo img, .logo video {
+            width: 80%;
+            height: auto;
+            padding: 10px;
+            box-shadow: 10px 8px 10px 5px rgb(127, 127, 120);
+            max-height: 600px;
+            object-fit: contain;
+        }
+
+        /* SSLG specific styles */
+        section:nth-child(3) .logo img {
+            width: 90%;
+            margin-top: -40px;
+        }
+
+        section:nth-child(3) .title {
+            margin-top: 60px;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #a1dda1;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column-reverse;
+                padding: 10px;
+            }
+            
+            .content-section {
+                text-align: center;
+                padding-right: 0;
+                margin-top: 20px;
+            }
+
+            .logo img, .logo video {
+                width: 95%;
+            }
+
+            .slide img {
+                height: 300px;
+            }
+
+            .section {
+                min-height: auto;
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        CAMPUS LIFE
+    </div>
+
+    <!-- SSLG Section -->
+    <section class="section">
+        <div class="container" style="flex-direction: column;">
+            <h1 class="title">Supreme Secondary Learner Government</h1>
+            
+            <div class="logo-container">
+                <div class="small-logos">
+                </div>
+                <div class="logo">
+                    <img src="474245054_3537106993099514_3458068978296448638_n.jpg" alt="Lagro High School Logo">
+                </div>
+            </div>
+    
+            <h3 class="tagline">MAKINANG NA KINABUKASAN : TALA ng Lagronians</h3>
+
+            <div class="SSLG" id="SSLG">
+            <p class="message">
+                A new set of stars seems to glow— creating a constellation of new beginnings! Are you ready to wish them luck this time around?
+            </p>
+            
+            <p class="message">
+                Let us welcome the newly elected set of leaders that will guide every Lagronian using their bright light towards a <span class="highlight">BRIGHTER</span> and <span class="highlight">SHINIER</span> school environment with a logo that symbolizes dreams and a blazing beginning.
+            </p>
+            
+            <p class="message">
+                Together, under the same sky, let us help keep the Lagronian shine alive as we spread the light from one student to another this Academic Year 2024-2025.
+            </p>
+            
+            <p class="footer-tagline">
+                Lagronians ang magsisilbing ilaw sa dilim!
+            </p>
+        </div>
+        </div>
+    </section>
+
+    <!-- Clean Up Drive Section -->
+    <section class="section">
+        <div class="container">
+            <div class="content-section">
+                <h3 class="tagline">CLEAN UP DRIVE</h3>
+                <p class="message">
+                    Pinangunahan ng Students for Efficient Environmental Development o SEED ang programa katuwang ang 10 - Platinum bilang Co-Designer, at sa tulong ng "Change the Current Earth Education".
+                </p>
+            </div>
+    
+            <div class="slider-section">
+                <div class="slider">
+                    <div class="slides">
+                        <div class="slide">
+                            <img src="asd.png" alt="Clean up drive image 1">
+                        </div>
+                        <div class="slide">
+                            <img src="asd (1).png" alt="Clean up drive image 2">
+                        </div>
+                    </div>
+                    <div class="slider-buttons"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paskong Lagronian Section -->
+    <section class="section">
+        <div class="container">
+            <div class="content-section">
+                <h3 class="tagline">PASKONG LAGRONIAN</h3>
+                <p class="message">
+                    Damang-dama ang diwa ng kapaskuhan sa Lagro High School (LHS) dahil sa programang hatid ng Supreme Secondary Learner Government (SSLG) na <i><b>Paskong Lagronian: The LHS Grand Christmas Party</b></i>, nitong Disyembre 18 sa covered court ng naturang paaralan.  
+                </p>
+            </div>
+    
+            <div class="slider-section">
+                <div class="slider">
+                    <div class="slides">
+                        <div class="slide">
+                            <img src="57.png" alt="Paskong Lagronian image 1">
+                        </div>
+                        <div class="slide">
+                            <img src="58.png" alt="Paskong Lagronian image 2">
+                        </div>
+                        <div class="slide">
+                            <img src="59.png" alt="Paskong Lagronian image 3">
+                        </div>
+                        <div class="slide">
+                            <img src="60.png" alt="Paskong Lagronian image 4">
+                        </div>
+                    </div>
+                    <div class="slider-buttons"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intrams Section -->
+    <section class="section">
+        <div class="container">
+            <div class="media-section">
+                <div class="logo">
+                    <video src="475096472_8426052547495154_935135868139192824_n.mp4" controls></video>
+                </div>
+            </div>
+    
+            <div class="content-section">
+                <h3 class="tagline">INTRAMASAYA</h3>
+                <p class="message">
+                    The Lagro Titans are more than just a team! We are a family bound together by our shared passion for the games! No matter the challenges, victories, or setbacks we face, we support each other and fight all together! Our unbreakable connection is our greatest asset that distinguishes us from the others. As Lagro Titans, we will persevere and fight side by side until the end!! 
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- No Plastic Section -->
+    <section class="section">
+        <div class="container">
+            <div class="media-section">
+                <div class="logo">
+                    <video src="475690950_29175478402039197_6873191816179841301_n.mp4" controls></video>
+                </div>
+            </div>
+    
+            <div class="content-section">
+                <h3 class="tagline">SA QC, BAWAL ANG PLASTIC!</h3>
+                <p class="message">
+                    Gamit ang mga tumbler na ito, inaasahan ang bawat Lagronian na makibahagi at sumuporta sa pagbawas ng single-use plastics sa loob ng paaralan sa pamamagitan ng araw-araw na paggamit ng nito.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sandigan Section -->
+    <section class="section">
+        <div class="container">
+            <div class="content-section">
+                <h3 class="tagline">SANDIGAN NG KABATAAN, MENTAL AT PISIKAL NA KALUSUGAN AY ALAGAAN</h3>
+                <p class="message">
+                    Sa pangunguna ng Sangguniang Kabataan ng Greater Lagro, matiwasay na naisagawa ang seminar na nagngangalang "Sandigan ng Kabataan, Mental at Pisikal na Kalusugan ay Alagaan!" sa Lagro High School Covered Court.
+                </p>
+            </div>
+    
+            <div class="slider-section">
+                <div class="slider">
+                    <div class="slides">
+                        <div class="slide">
+                            <img src="53.png" alt="Sandigan image 1">
+                        </div>
+                        <div class="slide">
+                            <img src="54.png" alt="Sandigan image 2">
+                        </div>
+                        <div class="slide">
+                            <img src="55.png" alt="Sandigan image 3">
+                        </div>
+                    </div>
+                    <div class="slider-buttons"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wins Prog Section -->
+    <section class="section">
+        <div class="container">
+            <div class="content-section">
+                <h3 class="tagline">WINS PROG</h3>
+                <p class="message">
+                    Sa pangunguna ng Sangguniang Kabataan ng Greater Lagro, matiwasay na naisagawa ang seminar na nagngangalang "Sandigan ng Kabataan, Mental at Pisikal na Kalusugan ay Alagaan!" sa Lagro High School Covered Court.
+                </p>
+            </div>
+            <div class="slider-section">
+                <div class="slider">
+                    <div class="slides">
+                        <div class="slide">
+                            <img src="61.png" alt="Wins Prog image 1">
+                        </div>
+                        <div class="slide">
+                            <img src="62.png" alt="Wins Prog image 2">
+                        </div>
+                        <div class="slide">
+                            <img src="63.png" alt="Wins Prog image 3">
+                        </div>
+                    </div>
+                    <div class="slider-buttons"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="scroll-indicator">↓</div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize all sliders on the page
+        document.querySelectorAll('.slider').forEach(slider => {
+            const slides = slider.querySelector('.slides');
+            const slideElements = slider.querySelectorAll('.slide');
+            const buttonsContainer = slider.querySelector('.slider-buttons');
+            let currentSlide = 0;
+            let slideInterval;
+
+            // Create slider buttons
+            slideElements.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.className = 'slider-button' + (index === 0 ? ' active' : '');
+                button.addEventListener('click', () => {
+                    goToSlide(index);
+                    resetInterval();
+                });
+                buttonsContainer.appendChild(button);
+            });
+
+            function goToSlide(index) {
+                currentSlide = index;
+                slides.style.transform = `translateX(-${index * 100}%)`;
+                slider.querySelectorAll('.slider-button').forEach((button, i) => {
+                    button.classList.toggle('active', i === index);
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slideElements.length;
+                goToSlide(currentSlide);
+            }
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            // Initialize the interval
+            resetInterval();
+        });
+
+        // Scroll indicator functionality
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        scrollIndicator.addEventListener('click', () => {
+            const currentSection = document.elementFromPoint(
+                window.innerWidth / 2,
+                window.innerHeight / 2
+            ).closest('.section');
+            
+            if (currentSection) {
+                const nextSection = currentSection.nextElementSibling;
+                if (nextSection && nextSection.classList.contains('section')) {
+                    nextSection.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top if at the end
+                }
+            }
+        });
+
+        // Update scroll indicator visibility
+        window.addEventListener('scroll', () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                scrollIndicator.innerHTML = '↑'; // Change to up arrow at bottom of page
+            } else {
+                scrollIndicator.innerHTML = '↓'; // Show down arrow otherwise
+            }
+        });
+    </script>
+</body>
+</html>
